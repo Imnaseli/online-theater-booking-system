@@ -9,14 +9,18 @@
 <body>
     <h1>Hello</h1>
 
+    <a></a>
+
     <div class="movie-slider">
     {% for movie in movies %}
         <div class="movie-div" >
+            <a href="{% url 'moviepage' movie.id  %}">
                 <div class="inner-movie-div">
                     {{ movie.title|title }}
                     {{movie.description|title}}
                     {{movie.genre|title}}
                 </div>
+            </a>
         </div>
     {% endfor %}
     </div>

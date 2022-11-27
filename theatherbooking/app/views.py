@@ -1,5 +1,5 @@
 from django.shortcuts import render
-#from .forms import *
+from .forms import *
 from django.http import HttpResponse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -14,3 +14,63 @@ def home(request):
     movie  = Movie.objects.all() 
     context = {'movies' : movie , 'count' : movie} 
     return render (request , "home.html" , context ) 
+
+    
+@login_required(login_url = 'signin')
+def signout (request):
+    logout(request)
+    return redirect('home')
+
+
+def signin(request):
+    form = SigninForm(request.POST or None)
+    if request.user.is_authenticated:
+        return redirect('home')
+    
+    if form.is_valid():
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = authenticate(request , username=username , password=password)
+        if user != None:
+            login(request,user)
+            return redirect('home')
+        else:
+            request.session['invalid_user'] = 1
+    context = {'form':form}
+    return render(request , 'signin.html', context)
+
+def signup (request):
+    form = SignupForm(request.POST or None)
+    if request.user.is_authenticated:
+        return redirect('home')
+    if form.is_valid():
+        username = form.cleaned_data.get('username')
+        first_name = form.cleaned_data.get('first_name')
+        last_name = form.cleaned_data.get('last_name')
+        email = form.cleaned_data.get('email')
+        password = form.cleaned_data.get('password1')
+        password2 = form.cleaned_data.get('password2')
+        
+        if password == password2:
+            User = get_user_model()
+            try:
+                user = User.objects.create_user(username ,  email , password )
+                user.first_name = first_name
+                user.last_name = last_name
+                user.save()
+            except Exception as e:
+                user = None
+        
+            if user != None:
+                login(request , user)
+                return redirect ('home')
+            else:
+                request.session['register_error'] = 1
+    context = {'form':form}
+    return render(request , 'signup.html', context)
+
+@login_required(login_url = 'signin')              
+def moviepage(request , movie_id):
+    movie = Movie.objects.get(id = movie_id)
+    context = {'movie':movie}
+    return render(request , 'moviepage.html' , context) 
