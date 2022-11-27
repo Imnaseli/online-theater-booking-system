@@ -1,3 +1,4 @@
+from pydoc import describe
 from django.shortcuts import render
 from .forms import *
 from django.http import HttpResponse
@@ -69,8 +70,27 @@ def signup (request):
     context = {'form':form}
     return render(request , 'signup.html', context)
 
-@login_required(login_url = 'signin')              
 def moviepage(request , movie_id):
     movie = Movie.objects.get(id = movie_id)
     context = {'movie':movie}
     return render(request , 'moviepage.html' , context) 
+
+@login_required(login_url = 'signin')              
+def addmovie(request):
+    form = AddMovie()
+    if request.method == 'POST':
+        form = AddMovie(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            movie = Movie(
+                user = request.user,
+                titlw = cd['title'],
+                imgurl = cd['imgurl'],
+                description = cd['description'],
+                genre = cd['genre'],
+                starttime = cd['starttime'],
+                )
+            movie.save()
+            return redirect ('home')
+    context = {'form':form}
+    return render (request , 'addmovie.html' , context)

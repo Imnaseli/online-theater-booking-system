@@ -62,10 +62,20 @@ class SigninForm(forms.Form):
         widget=forms.PasswordInput
     )
 
-    # def username(self):
-    #     username = self.cleaned_data.get('username')
-    #     qs = User.objects.filter(username__iexact = username )
-    #     if not qs.exists():
-    #         raise forms.ValidationError('This is an Invalid Email Address ')
-    #     return username
+class AddMovie(forms.Form):
+    title = forms.CharField(
+        label = "Movie Title"
+    )
+    imgurl = forms.CharField(
+        label = "Movie Image link"
+    )
+    description = forms.CharField(
+        label = "Movie description"
+    )
+    genre = forms.CharField(
+        label = "Movie genre"
+    )
+    starttime = forms.DateField(
+        label="Start time"
+    )
     
