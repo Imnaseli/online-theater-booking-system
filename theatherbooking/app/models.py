@@ -11,7 +11,7 @@ class Movie (models.Model):
     imgurl = models.CharField(max_length = 50)
     description = models.CharField(max_length = 250)
     genre = models.CharField(max_length = 50)
-    starttime = models.DateTimeField()    
-    
+    numofmin = models.IntegerField()
+     
     def __str__(self):
         return self.title

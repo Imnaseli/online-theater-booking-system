@@ -75,7 +75,7 @@ class AddMovie(forms.Form):
     genre = forms.CharField(
         label = "Movie genre"
     )
-    starttime = forms.DateField(
-        label="Start time"
+    numofmin = forms.IntegerField(
+        label="Number of minutes"
     )
     
