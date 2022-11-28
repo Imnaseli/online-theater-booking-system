@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@500&display=swap");
+
+:root {
+  font-size: 16px;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-family);
+  --red: #ff0040;
+  --dark-grey: #0e1014;
+  --blackish: #090a0d;
+  --title-font: "Work Sans", sans-serif;
+  --emphasis-font: "Kanit", sans-serif;
+}
+
+html,
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  background-color: var(--blackish);
+  overflow-x: hidden;
+}
+
+nav {
+  width: 80%;
+  height: 10vh;
+  display: flex;
+  position: absolute;
+  top: 0px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav > * {
+  display: block;
+  background-color: transparent;
+  color: white;
+  font-family: var(--emphasis-font), var(--font-family);
+  border: none;
+}
+
+nav a > button {
+  color: white;
+  font-family: var(--emphasis-font);
+  background-color: transparent;
+}
+
+.Log {
+  background-color: var(--red);
+  border-radius: 5px;
+  height: 7vh;
+}
+
+#intro {
+  box-sizing: border-box;
+  padding: 0% 10%;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/styles/images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+}
+
+#info {
+  color: white;
+  box-sizing: border-box;
+  background-color: transparent;
+  width: 40%;
+  height: 50%;
+  display: grid;
+  position: relative;
+  grid-template-rows: 3fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+}
+
+#company-name {
+  font-family: var(--title-font), var(--font-family);
+  /* font-weight: 700; */
+  font-size: 3rem;
+  grid-column: 1 / 4;
+}
+
+.red {
+  color: #ff0040;
+}
+
+#info > button {
+  color: white;
+  background-color: var(--red);
+  border-radius: 5px;
+  border: none;
+  height: 60%;
+  font-family: var(--emphasis-font), var(--font-family);
+  font-size: 1rem;
+}
+
+#launch-date {
+  color: #edeade;
+  font-family: var(--emphasis-font);
+  font-size: 0.8rem;
+}
+
+#movie-section {
+  width: 100wv;
+  height: 100vh;
+  display: flex;
+  flex-wrap: no-wrap;
+}
