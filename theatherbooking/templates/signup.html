@@ -1,27 +1,36 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
     <title>Signup</title>
 </head>
 <body>
-<h1>Sign Up</h1>
-<form method="POST" action="">
-    {% csrf_token %}
-    {% for field in form %}
+<div id="background">
+    <nav>
         <div>
-            <label>{{field.label}}</label>
-            {{field}}
+            Movie<span class="red">hub</span>
         </div>
-    {% endfor %}
-    <div class="input">
-        <input class="signup_submit_button" type="submit" value="Sign up" />
-    </div>
-</form>
-<a href="{% url 'signin' %}">
-    Already have an account?
-</a>
+    </nav>
+    <form method="POST" action="">
+        <h1>Sign Up</h1>
+        {% csrf_token %}
+        {% for field in form %}
+            <div>
+                <label>{{field.label}}</label>
+                {{field}}
+            </div>
+        {% endfor %}
+        <div class="input">
+            <input class="signup_submit_button" type="submit" value="SIGN UP" />
+        </div>
+        <div>
+            Already have an account? <a href="{% url 'signin' %}"> Login</a>
+        </div>
+    </form>
+</div>
 </body>
 </html>
