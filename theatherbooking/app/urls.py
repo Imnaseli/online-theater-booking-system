@@ -11,5 +11,6 @@ urlpatterns = [
     path('signout' , views.signout , name='signout'),
 
     path('moviepage/<int:movie_id>' , views.moviepage , name='moviepage'),
-    path('addmovie' , views.addmovie , name='addmovie')
+    path('addmovie' , views.addmovie , name='addmovie'),
+    path('bookmovie/<int:movie_id>' , views.bookmovie , name='bookmovie'),
 ]
