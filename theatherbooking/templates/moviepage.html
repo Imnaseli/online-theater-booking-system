@@ -15,6 +15,14 @@
 
 </div>
 
+
+<a href="{% url 'bookmovie' movie.id  %}">
+    <button type="button">Book Movie</button>
+</a>
+
+
+
+
 <a href="{{request.META.HTTP_REFERER}}">Go back</a>
 
 </body>

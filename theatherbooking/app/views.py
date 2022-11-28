@@ -1,3 +1,4 @@
+from multiprocessing import context
 from pydoc import describe
 from django.shortcuts import render
 from .forms import *
@@ -93,3 +94,26 @@ def addmovie(request):
             return redirect ('home')
     context = {'form':form}
     return render (request , 'addmovie.html' , context)
+
+
+def bookmovie(request , movie_id):
+    movie = Movie.objects.get(id = movie_id)
+    form = BookmovieForm()
+    if request.method == 'POST':
+        form = BookmovieForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            viewer = Viewer(
+                firstname = cd['firstname'],
+                lastname = cd['lastname'],
+                phonenumber = cd['phonenumber'],
+                numofseats = cd['numofseats'],
+                movie = movie.title
+                )
+            viewer.save()
+            return redirect('home')
+        else:
+            return redirect('home')
+    context = {'form':form}
+    return render (request , 'bookmovie.html' , context)
+            

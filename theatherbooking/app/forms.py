@@ -66,9 +66,6 @@ class AddMovie(forms.Form):
     title = forms.CharField(
         label = "Movie Title"
     )
-    imgurl = forms.CharField(
-        label = "Movie Image link"
-    )
     description = forms.CharField(
         label = "Movie description"
     )
@@ -77,5 +74,28 @@ class AddMovie(forms.Form):
     )
     numofmin = forms.IntegerField(
         label="Number of minutes"
+    )
+    numofseats = forms.IntegerField(
+        label="Number of Seats"
+    )
+    imgurl = forms.CharField(
+        label = "Movie Image (Portrait) "
+    )
+    imgurl2 = forms.CharField(
+        label = "Movie Image link (Landscape)"
+    )
+    
+class BookmovieForm(forms.Form):
+    firstname = forms.CharField(
+        label='First Name'
+    )
+    lastname= forms.CharField(
+        label='Last Name'
+    )
+    phonenumber= forms.IntegerField(
+        label='Phone Number'
+    )
+    numofseats = forms.IntegerField(
+        label='Number of Seats Purchasing'
     )
     
