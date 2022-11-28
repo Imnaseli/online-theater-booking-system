@@ -46,6 +46,7 @@ nav a > button {
   color: white;
   font-family: var(--emphasis-font);
   background-color: transparent;
+  border: none;
 }
 
 .Log {
