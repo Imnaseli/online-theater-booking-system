@@ -13,11 +13,24 @@
             <a href=""><button>Sign Up</button></a>
         </nav>
 
+<<<<<<< HEAD
         <div id="info">
             <div id="company-name">Online Theater</div>
             <button type="button">BOOK NOW</button>
         </div>
     </div>
+=======
+
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'addmovie' %}">
+            Add Movie</a>
+    {% else %}
+    {% endif %}
+
+
+
+
+>>>>>>> 9b611959b7a58eaaee0b200049672c46a7d57a48
 
     <div class="movie-slider">
     {% for movie in movies %}

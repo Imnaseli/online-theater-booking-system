@@ -16,12 +16,10 @@ def home(request):
     context = {'movies' : movie , 'count' : movie} 
     return render (request , "home.html" , context ) 
 
-    
 @login_required(login_url = 'signin')
 def signout (request):
     logout(request)
     return redirect('home')
-
 
 def signin(request):
     form = SigninForm(request.POST or None)
@@ -83,14 +81,15 @@ def addmovie(request):
         if form.is_valid():
             cd = form.cleaned_data
             movie = Movie(
-                user = request.user,
-                titlw = cd['title'],
+                title = cd['title'],
                 imgurl = cd['imgurl'],
                 description = cd['description'],
                 genre = cd['genre'],
-                starttime = cd['starttime'],
+                numofmin = cd['numofmin'],
                 )
             movie.save()
+            return redirect ('home')
+        else:
             return redirect ('home')
     context = {'form':form}
     return render (request , 'addmovie.html' , context)
