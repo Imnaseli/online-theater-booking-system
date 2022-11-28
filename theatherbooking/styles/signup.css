@@ -35,6 +35,11 @@ nav > div {
   font-size: 2rem;
 }
 
+nav div a {
+  text-decoration: none;
+  color: white;
+}
+
 .red {
   color: var(--red);
 }
