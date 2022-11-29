@@ -8,8 +8,8 @@ from django.db import models
 
 class Movie (models.Model):
     title = models.CharField(max_length = 50)
-    imgurl = models.CharField(max_length = 50)
-    imgurl2 = models.CharField(max_length = 50 , null = True)
+    imgurl = models.CharField(max_length = 250)
+    imgurl2 = models.CharField(max_length = 250 , null = True)
     description = models.TextField()
     genre = models.CharField(max_length = 50)
     numofmin = models.IntegerField()

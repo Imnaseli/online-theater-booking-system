@@ -1,24 +1,34 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'moviepage.css' %}">
     <title>{{movie.title|title}</title>
 </head>
 <body>
 
-<div class="movie">
-    <p>{{movie.title}}</p>
-    <p>{{movie.description}}</p>
-    <p>{{movie.genre}}</p>
+    <section id="A" style="background-image: url('{{movie.imgurl2}}');">
+        <div class="movie">
+            <p>{{movie.title}}</p>
+            <a href="{% url 'bookmovie' movie.id  %}">
+                <button type="button">Book Movie</button>
+            </a>
+            <div>{{movie.numofseats}} seats.</div>
+        </div>
+    </section>
 
-</div>
-
-
-<a href="{% url 'bookmovie' movie.id  %}">
-    <button type="button">Book Movie</button>
-</a>
+    <section id="B">
+        <div style="background-image: url('{{movie.imgurl}}');"></div>
+        <div id="information">
+            <p class="subtitle">GENRE</p>
+            <p>{{movie.genre}}</p>
+            <p class="subtitle">SUMMARY</p>
+            <div>{{movie.description}}</div>
+        </div>
+    </section>
 
 
 
