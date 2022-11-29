@@ -71,7 +71,14 @@ def signup (request):
 
 def moviepage(request , movie_id):
     movie = Movie.objects.get(id = movie_id)
-    context = {'movie':movie}
+    movieid = Movie.objects.get(id=movie_id).id
+    seats = 0
+    data = Viewer.objects.all()
+    for x in data:
+        seats += x.numofseats 
+    remainingseats = movie.numofseats - seats 
+
+    context = {'movie':movie ,  'seats':remainingseats }
     return render(request , 'moviepage.html' , context) 
 
 @login_required(login_url = 'signin')              
@@ -102,6 +109,7 @@ def addmovie(request):
 
 def bookmovie(request , movie_id):
     movie = Movie.objects.get(id = movie_id)
+    movieid = Movie.objects.get(id=movie_id).id
     form = BookmovieForm()
     if request.method == 'POST':
         form = BookmovieForm(request.POST)
@@ -112,12 +120,14 @@ def bookmovie(request , movie_id):
                 lastname = cd['lastname'],
                 phonenumber = cd['phonenumber'],
                 numofseats = cd['numofseats'],
-                movie = movie.title
+                movie = movie.title,
+                movie_id = movieid
                 )
             viewer.save()
             return redirect('home')
         else:
             return redirect('home')
-    context = {'form':form}
+    
+    context = {'form':form ,}
     return render (request , 'bookmovie.html' , context)
             
