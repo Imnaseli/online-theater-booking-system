@@ -84,9 +84,13 @@ def addmovie(request):
             movie = Movie(
                 title = cd['title'],
                 imgurl = cd['imgurl'],
+                imgurl2 = cd['imgurl2'],
+                year = cd['year'],
+                director = cd['director'],
                 description = cd['description'],
                 genre = cd['genre'],
                 numofmin = cd['numofmin'],
+                numofseats = cd['numofseats'],
                 )
             movie.save()
             return redirect ('home')

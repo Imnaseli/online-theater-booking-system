@@ -14,6 +14,8 @@ class Movie (models.Model):
     genre = models.CharField(max_length = 50)
     numofmin = models.IntegerField()
     numofseats = models.IntegerField()
+    year = models.CharField(max_length = 4)
+    director = models.CharField(max_length = 255)
      
     def __str__(self):
         return self.title
