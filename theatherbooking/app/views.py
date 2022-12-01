@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate , login , logout
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
+
 # Create your views here.
 
 def home(request):
@@ -73,13 +74,14 @@ def moviepage(request , movie_id):
     movie = Movie.objects.get(id = movie_id)
     movieid = Movie.objects.get(id=movie_id).id
     seats = 0
-    data = Viewer.objects.all()
-    for x in data:
-        seats += x.numofseats 
+    viewers = Viewer.objects.all()
+    for viewer in viewers:
+        if int(viewer.movie_id) == int(movie.id):
+            seats += viewer.numofseats
     remainingseats = movie.numofseats - seats 
-
     context = {'movie':movie ,  'seats':remainingseats }
     return render(request , 'moviepage.html' , context) 
+
 
 @login_required(login_url = 'signin')              
 def addmovie(request):
@@ -131,3 +133,8 @@ def bookmovie(request , movie_id):
     context = {'form':form ,}
     return render (request , 'bookmovie.html' , context)
             
+
+def deletemovie(request , movie_id):
+    movie = Movie.objects.get(id = movie_id)
+    movie.delete()
+    return redirect('home')

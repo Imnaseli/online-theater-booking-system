@@ -13,4 +13,6 @@ urlpatterns = [
     path('moviepage/<int:movie_id>' , views.moviepage , name='moviepage'),
     path('addmovie' , views.addmovie , name='addmovie'),
     path('bookmovie/<int:movie_id>' , views.bookmovie , name='bookmovie'),
+
+    path('deletemovie<int:movie_id>', views.deletemovie, name='deletemovie'),
 ]
