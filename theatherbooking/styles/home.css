@@ -70,7 +70,7 @@ nav a > button {
 }
 
 #intro:hover {
-  animation: zoom 10s ease-in-out 1s 1 alternate-reverse;
+  animation: zoom 15s ease-in-out 1s 1 alternate-reverse;
 }
 @keyframes zoom {
   100% {
