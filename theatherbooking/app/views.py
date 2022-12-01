@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate , login , logout
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
+
 # Create your views here.
 
 def home(request):
@@ -71,8 +72,16 @@ def signup (request):
 
 def moviepage(request , movie_id):
     movie = Movie.objects.get(id = movie_id)
-    context = {'movie':movie}
+    movieid = Movie.objects.get(id=movie_id).id
+    seats = 0
+    viewers = Viewer.objects.all()
+    for viewer in viewers:
+        if int(viewer.movie_id) == int(movie.id):
+            seats += viewer.numofseats
+    remainingseats = movie.numofseats - seats 
+    context = {'movie':movie ,  'seats':remainingseats }
     return render(request , 'moviepage.html' , context) 
+
 
 @login_required(login_url = 'signin')              
 def addmovie(request):
@@ -84,9 +93,13 @@ def addmovie(request):
             movie = Movie(
                 title = cd['title'],
                 imgurl = cd['imgurl'],
+                imgurl2 = cd['imgurl2'],
+                year = cd['year'],
+                director = cd['director'],
                 description = cd['description'],
                 genre = cd['genre'],
                 numofmin = cd['numofmin'],
+                numofseats = cd['numofseats'],
                 )
             movie.save()
             return redirect ('home')
@@ -98,6 +111,7 @@ def addmovie(request):
 
 def bookmovie(request , movie_id):
     movie = Movie.objects.get(id = movie_id)
+    movieid = Movie.objects.get(id=movie_id).id
     form = BookmovieForm()
     if request.method == 'POST':
         form = BookmovieForm(request.POST)
@@ -108,12 +122,19 @@ def bookmovie(request , movie_id):
                 lastname = cd['lastname'],
                 phonenumber = cd['phonenumber'],
                 numofseats = cd['numofseats'],
-                movie = movie.title
+                movie = movie.title,
+                movie_id = movieid
                 )
             viewer.save()
             return redirect('home')
         else:
             return redirect('home')
-    context = {'form':form}
+    
+    context = {'form':form ,}
     return render (request , 'bookmovie.html' , context)
             
+
+def deletemovie(request , movie_id):
+    movie = Movie.objects.get(id = movie_id)
+    movie.delete()
+    return redirect('home')
