@@ -59,6 +59,10 @@ nav a > button {
   height: 7vh;
 }
 
+#login {
+  width: 7vw;
+}
+
 #intro {
   box-sizing: border-box;
   padding: 0% 10%;
