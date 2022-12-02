@@ -140,7 +140,48 @@ nav a > button {
   gap: 25px;
   padding: 0px 5%;
   flex-wrap: nowrap;
-  /* overflow-x: auto; */
+}
+
+#back,
+#front {
+  height: 10vh;
+  width: 10vh;
+  border-radius: 50%;
+  background-color: transparent;
+  color: white;
+  border: none;
+  z-index: 1;
+  position: absolute;
+  background-image: url("./images/menu-left.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 145%;
+  margin-top: -5vh;
+}
+
+#front {
+  right: 2%;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+#back {
+  left: 2%;
+}
+
+.slide {
+  animation: carousel 2s ease-in-out 0s 1 forwards alternate;
+}
+
+@keyframes carousel {
+  100% {
+    transform: translateX(-20vw);
+  }
 }
 
 .movie-div {
