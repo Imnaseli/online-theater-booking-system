@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 # from django.contrib import messages
 User = get_user_model()
 
+
 class SignupForm(forms.Form):
     username = forms.CharField(
         label='User Name'
@@ -27,30 +28,32 @@ class SignupForm(forms.Form):
         label='Confirm Password',
         widget=forms.PasswordInput
     )
-    
+
     def clean_username(self):
         username = self.cleaned_data.get('username')
-        qs  = User.objects.filter(username__iexact = username)
+        qs = User.objects.filter(username__iexact=username)
         if qs.exists():
-            raise forms.ValidationError('This is an invalid Username , please pick another')
+            raise forms.ValidationError(
+                'This is an invalid Username , please pick another')
         if qs.count() > 1:
-            raise forms.ValidationError('This is an invalid Username , please pick another')
+            raise forms.ValidationError(
+                'This is an invalid Username , please pick another')
         return username
-    
+
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        qs = User.objects.filter(email__iexact = email)
+        qs = User.objects.filter(email__iexact=email)
         if qs.exists():
             raise forms.ValidationError('This email is already in use')
         return email
-    
+
     def clean_password(self):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
-        if password1 != password2 :
+        if password1 != password2:
             raise forms.ValidationError("Your passwords dont match")
         return password1
-    
+
 
 class SigninForm(forms.Form):
 
@@ -62,46 +65,47 @@ class SigninForm(forms.Form):
         widget=forms.PasswordInput
     )
 
+
 class AddMovie(forms.Form):
     title = forms.CharField(
-        label = "Movie Title"
+        widget=forms.TextInput(attrs={'placeholder': 'Title'})
     )
     description = forms.CharField(
-        label = "Movie description"
+        widget=forms.TextInput(attrs={'placeholder': 'Description'})
     )
     genre = forms.CharField(
-        label = "Movie genre"
+        widget=forms.TextInput(attrs={'placeholder': 'Genre'})
     )
     year = forms.CharField(
-        label="Year Released"
+        widget=forms.TextInput(attrs={'placeholder': 'Year Released'})
     )
     director = forms.CharField(
-        label="Directed by"
+        widget=forms.TextInput(attrs={'placeholder': 'Director'})
     )
     numofmin = forms.IntegerField(
-        label="Number of minutes"
+        widget=forms.TextInput(attrs={'placeholder': 'Length (mins)'})
     )
     numofseats = forms.IntegerField(
-        label="Number of Seats"
+        widget=forms.TextInput(attrs={'placeholder': 'Number of Seats'})
     )
     imgurl = forms.CharField(
-        label = "Movie Image (Portrait) "
+        widget=forms.TextInput(attrs={'placeholder': 'Portrait Imgurl'})
     )
     imgurl2 = forms.CharField(
-        label = "Movie Image link (Landscape)"
+        widget=forms.TextInput(attrs={'placeholder': 'Landscape Imgurl'})
     )
-    
+
+
 class BookmovieForm(forms.Form):
     firstname = forms.CharField(
         label='First Name'
     )
-    lastname= forms.CharField(
+    lastname = forms.CharField(
         label='Last Name'
     )
-    phonenumber= forms.IntegerField(
+    phonenumber = forms.IntegerField(
         label='Phone Number'
     )
     numofseats = forms.IntegerField(
         label='Number of Seats Purchasing'
     )
-    

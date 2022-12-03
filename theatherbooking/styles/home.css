@@ -19,6 +19,10 @@ body {
   margin: 0px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--blackish);
   overflow-x: hidden;
@@ -53,6 +57,10 @@ nav a > button {
   background-color: var(--red);
   border-radius: 5px;
   height: 7vh;
+}
+
+#login {
+  width: 7vw;
 }
 
 #intro {
@@ -93,7 +101,6 @@ nav a > button {
 
 #company-name {
   font-family: var(--title-font), var(--font-family);
-  /* font-weight: 700; */
   font-size: 3rem;
   grid-column: 1 / 4;
 }
@@ -136,7 +143,38 @@ nav a > button {
   gap: 25px;
   padding: 0px 5%;
   flex-wrap: nowrap;
-  /* overflow-x: auto; */
+}
+
+#back,
+#front {
+  height: 10vh;
+  width: 10vh;
+  border-radius: 50%;
+  background-color: transparent;
+  color: white;
+  border: none;
+  z-index: 1;
+  position: absolute;
+  background-image: url("./images/menu-left.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 145%;
+  margin-top: -5vh;
+}
+
+#front {
+  right: 2%;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+}
+
+#back {
+  left: 2%;
 }
 
 .movie-div {
@@ -152,6 +190,8 @@ nav a > button {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 12fr 1fr 1fr;
+  position: relative;
+  transition: transform 500ms ease-in-out;
 }
 
 .movie-div > div:first-child {
@@ -171,37 +211,3 @@ nav a > button {
 #title {
   grid-column: 1 / 3;
 }
-
-/* ::-webkit-scrollbar {
-  width: 9px;
-  height: 9px;
-}
-::-webkit-scrollbar-button {
-  width: 0px;
-  height: 0px;
-}
-::-webkit-scrollbar-thumb {
-  background: #e1e1e1;
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #ffffff;
-}
-::-webkit-scrollbar-thumb:active {
-  background: #000000;
-}
-::-webkit-scrollbar-track {
-  background: #090a0d;
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-track:hover {
-  background: #090a0d;
-}
-::-webkit-scrollbar-track:active {
-  background: #0e1014;
-}
-::-webkit-scrollbar-corner {
-  background: transparent;
-} */

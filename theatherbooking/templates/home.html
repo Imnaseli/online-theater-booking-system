@@ -25,7 +25,7 @@
             </a>
             <a href="{% url 'signout' %}"><button class="Log">LOGOUT</button></a>
         {% else %}
-            <a href="{% url 'signin' %}"><button class="Log">LOGIN</button></a>
+            <a href="{% url 'signin' %}"><button class="Log" id="login">LOGIN</button></a>
         {% endif %}
              
         </nav>
@@ -44,6 +44,8 @@
 
     <div id="movie-section">
         <div class="slider">
+            <button id="back" onclick="slideBack()"></button>
+            <button id="front" onclick="slideFront()"></button>
             {% for movie in movies %}
                     <a href="{% url 'moviepage' movie.id  %}" class="movie-div">
                         <!-- <img src="{{movie.imgurl}}" alt="Movie Picture"> -->
@@ -57,5 +59,45 @@
     </div>
 
 </body>
+<script>
+    let elements = document.getElementsByClassName('movie-div');
+    
+    function slideFront() 
+    {
+        for(let i = 0; i < elements.length; i++)
+        {
+            if(isInViewport(elements[elements.length - 1]))
+            {
+                break;
+            };
+           elements[i].style.transform += 'translateX(-20vw)';
+        };
+
+    };
+
+    function slideBack() 
+    {
+        for(let i = 0; i < elements.length; i++)
+        {
+            if(isInViewport(elements[0]))
+            {
+                break;
+            }
+           elements[i].style.transform += 'translateX(20vw)';
+        };
+
+    };
+
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+</script>
+
 </html>
 
