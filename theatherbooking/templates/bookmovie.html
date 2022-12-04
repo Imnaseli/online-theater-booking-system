@@ -10,6 +10,12 @@
 </head>
 <body>
 <div id="background">
+    <nav>
+        <div>
+            <a href="{% url 'home' %}">Movie<span class="red">hub</span></a>
+        </div>
+    </nav>
+
     <form method="POST" action="">
         <h1>Book movie</h1>
         {% csrf_token %}
