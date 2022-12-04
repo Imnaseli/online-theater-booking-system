@@ -102,3 +102,15 @@ input[type="submit"] {
   border: none;
   border-radius: 5px;
 }
+
+input[type="submit"]:hover {
+  animation: colorchg 500ms ease-in 200ms 1 forwards;
+}
+
+@keyframes colorchg {
+  100% {
+    color: var(--red);
+    background-color: white;
+    font-weight: 700;
+  }
+}
